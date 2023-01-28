@@ -1,0 +1,34 @@
+@font-face {
+    font-family: rick_and_morty;
+    src: url("../../assets/get_schwifty.ttf");
+}
+
+.card{
+    background-color: #64b4e2cb;
+    border:solid #06d6a0;
+    font-family: rick_and_morty;
+    width: 25em;
+    height: 38em;
+    border-radius: 2em;
+}
+
+.card h2{
+    color: rgb(245, 237, 122);
+}
+
+.card button{
+    border: red solid;
+    border-radius: 0.5em;
+    margin: 0.5em;
+}
+
+.card button:hover{
+    background-color: blue;
+    border-radius: 0.5em;
+    margin: 0.5em;
+    cursor:pointer
+}
+
+.card image:active {
+    width: 20px;
+}

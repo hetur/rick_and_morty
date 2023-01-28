@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.divCard{
+    border: solid #06d6a0 0.2em;
+    border-radius: 0.8em;
+    margin: 1em;
+    background-color: #f48d06cb;
+}
