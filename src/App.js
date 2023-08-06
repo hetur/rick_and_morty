@@ -1,11 +1,14 @@
+import './App.css';
+import Card from './components/card/Card.jsx';
+import Cards from './components/cards/Cards.jsx';
+import SearchBar from './components/searchbar/SearchBar';
 import { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import './App.css';
 import About from './components/about/About';
-import Cards from './components/cards/Cards.jsx';
 import Nav from "./components/nav/Nav.jsx";
 import Detail from './components/detail/Detail.jsx';
 import Form from './components/form/Form';
+
 
 function App () {
   const location = useLocation()
