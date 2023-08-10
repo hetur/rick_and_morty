@@ -1,16 +1,13 @@
-import styles from './Car.module.css'
-import { Link } from 'react-router-dom';
-
-export default function Card(props) {
-   //console.log(props);
+export default function Card(name, species, image, gender, onClose) {
+   
    return (
-      <div className={styles.card}>
-         <button onClick={props.onClose}>X</button>
-         <h6>{props.id}</h6>
-         <Link to={`/detail/${props.id}`}><h2>{props.name}</h2></Link>
-         <h2>{props.species}</h2>
-         <h2>{props.gender}</h2>
-         <img  src={props.image} alt={props.name} />
-      </div>
+      <div>
+         <button onClick={onClose}>X</button>
+         <h2>{name}</h2>
+         <h2>{species}</h2>
+         <h2>{gender}</h2>
+         <img src={image} alt="not found" />
+
+         </div>
    );
 }

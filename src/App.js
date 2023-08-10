@@ -1,48 +1,38 @@
 import './App.css';
 import Card from './components/card/Card.jsx';
 import Cards from './components/cards/Cards.jsx';
-import SearchBar from './components/searchbar/SearchBar';
-import { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import About from './components/about/About';
-import Nav from "./components/nav/Nav.jsx";
-import Detail from './components/detail/Detail.jsx';
-import Form from './components/form/Form';
-
+import SearchBar from './components/searchbar/SearchBar.jsx';
+import characters, { Rick } from "./data.js";
 
 function App () {
-  const location = useLocation()
-  const [characters, setCharacters] = useState([])
-  function onSearch(character){
-    fetch(`https://rickandmortyapi.com/api/character/${character}`)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.name){
-        setCharacters((oldChars) => [...oldChars, data]);
-      }else{
-        window.alert('No hay personaje con ese ID');
-      }
-    });
-  }
-  const onClose = (id) => {
-    setCharacters(characters.filter(chard => chard.id !== id));
-  }
   return (
-    <div className='App'> 
+    <div className='App' style={{ padding: "25px" }}> 
       <div>
-        {location.pathname !== '/' && <Nav onsearch={onSearch}/>}
+        <SearchBar onSearch={(charactersID) => window.alert("carac")}></SearchBar>
       </div>
-      <Routes>
-        <Route path='/' element={<Form />} />
-        <Route
-         path='/Home'
-         element= {<Cards characters={characters} onClose={onClose}/>}/>
-         <Route path="/about" element={<About/>}/>
-         <Route path='/detail/:detailId' element={<Detail/>}/>      
-      </Routes>
-
+      <hr />  
+      <div style={{ 
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      >
+       <Card
+        id={Rick.id}
+        name={Rick.name}
+        species={Rick.species}
+        gender={Rick.gender}
+        image={Rick.image}
+        onClose={() => window.alert('simulamos se cierra la card')}
+        /> 
+      </div>
+      <hr />
+      <div>
+        <Cards characters={characters} />
+      </div>
     </div>
-  )
-}
+    );
+   }  
 
-export default App
+
+  export default App;

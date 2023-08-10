@@ -1,34 +1,67 @@
-@font-face {
-    font-family: rick_and_morty;
-    src: url("../../assets/get_schwifty.ttf");
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    height: 270px;
+    border-radius: 20px;
+    background-color: aliceblue;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 20px rgba(0, 255,255, 0.6 );
 }
 
-.card{
-    background-color: #64b4e2cb;
-    border:solid #06d6a0;
-    font-family: rick_and_morty;
-    width: 25em;
-    height: 38em;
-    border-radius: 2em;
+.container:hover {
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
-.card h2{
-    color: rgb(245, 237, 122);
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
 }
 
-.card button{
-    border: red solid;
-    border-radius: 0.5em;
-    margin: 0.5em;
+.button {
+    border-radius: 20px;
+    margin: 10px 10px 0 0;
+    border: none;
+    background-color: red;
+    color: aliceblue;
 }
 
-.card button:hover{
-    background-color: blue;
-    border-radius: 0.5em;
-    margin: 0.5em;
-    cursor:pointer
+.button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
-.card image:active {
-    width: 20px;
+img{
+    width: 200px;
+    border-radius: 10px 10px 0 0;
 }
+
+.imageContainer {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    align-items: center;
+}
+
+.name {
+    background-color: rgba(0, 255,255, 0.6 );
+    position: absolute;
+    margin-bottom: 0px;
+}
+
+.propsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: black;
+    margin: 0px;
+    color: aqua;
+    border-radius: 0 0 20px 20px;
+}
+
+.propsContainer {
+    margin: 0px;
+}
+
+
