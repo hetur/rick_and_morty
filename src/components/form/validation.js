@@ -1,14 +1,21 @@
 const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-const regexPassword = /^(?=.*?[a-z])(?=.*?[0-9]).{6,10}$/;
-
-export function validation(userData){
-   let errors = {}
-
-   if(!regexEmail.test(userData.username)) errors.username = 'El ususario es un email'
-   else if(!userData.username) errors.username = 'debe ingresar un email'
-   else if (userData.username.length > 35) errors.username = 'excede la cantidad de caracteres'
-   if(!regexPassword.test(userData.password)) errors.password = 'clave incorrecta'
-   else if (userData.password.length < 6 && userData.password.length > 10) errors.password = 'clave demasiado corta deben ser 6 o mas carcteres';
-   
-
-}
+const validLettersAndNumbers = new RegExp(/^(?=.*[a-z])(?=.*[0-9])/);
+export const validate = (inputs) => {
+        const errors = {}
+        if(!regexEmail.test(inputs.userName)){
+            errors.userName = "Debe ser un email"
+        }
+        if(!inputs.userName){
+            errors.userName = "No puede estar vacio"
+        }
+        if(inputs.userName.length > 35){
+            errors.userName = "No puede tener más de 35 caracteres"
+        }
+        if(!validLettersAndNumbers.test(inputs.password)){
+            errors.password = "Debe contener al menos un número"
+        }
+        if(inputs.password.length < 6 || inputs.password.length > 10){
+            errors.password = "Debe contener entre 6 y diez caracteres"
+        }
+        return errors;
+    };

@@ -1,45 +1,65 @@
-import React from 'react';
-import { validation } from './validation.js';
-
-export default function Form() {
-    const [userData, setUserData] = React.useState({
-        username:"",
-        password:""
+import styles from "./Form.module.css";
+import { useEffect, useState } from "react";
+import { validate } from "./validation";
+export default function Form(props) {
+    const [userData, setUserData] = useState({
+        userName: "",
+        password:"",
     });
-    const [errors, setErrors] = React.useState({
-        username:"",
-        password:""
+    const [errors, setErrors] = useState({
+        userName: "",
+        password: "",
     });
+    const handleChange = (event) => {
+      const { name, value } = event.target;
 
-   function handleImputChange(e){
-    setUserData({...userData,[e.target.name]: e.target.value}); setErrors(validation({...userData,[e.target.name]:e.taget.value}));
-
-   } 
-
-  return (
-    <div>
-      <form>
-        <label htmlFor="username">Username</label>
+        setUserData({
+            ...userData,
+            [name]: value,
+        });
+        setErrors(
+            validate({
+                ...userData,
+                [name]: value,
+            })
+        );
+    };
+    const handleSubmit = (event) =>{
+        event.preventDefault()
+        props.login(userData)
+    };
+    const handleLogOut = () => {
+        props.logOut()
+    }
+    return(
+    <form className={styles.container} onSubmit={handleSubmit}>
+        <img src="https://i.guim.co.uk/img/media/b563ac5db4b4a4e1197c586bbca3edebca9173cd/0_12_3307_1985/master/3307.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=61a26bf43da26e4ca97e932e5ee113f7" alt="not found" />
+        <br />
+        <label htmlFor="">Nombre: </label>
         <input
-            id="username" 
-            name='username'
-            placeholder='Ingrese el Usuario'
-            type="text"
-            value={userData.username}
-            onChange={handleImputChange}
-            />
-            <p>{errors.username}</p>
-        <label htmlFor="password">Password:</label>
-        <input 
-            id="password"
-            name='pasword'
-            type='password'
-            value={userData.password}
-            onChange={handleImputChange}
-            />
-            <p>{errors.password}</p>
-        <input type="submit"/>
-      </form>
-    </div>
-  );
-}
+         type="text"
+         value={userData.userName}
+         name="userName"
+         onChange={handleChange}
+         className={errors.userName && styles.warning}
+        />
+        {errors.userName ? ( 
+        <p style={{ color:"red" }}>{errors.userName}</p>
+        ) : null}
+        <label htmlFor="">Password: </label>
+        <input
+        type="password"
+        value={userData.password}
+        name="password"
+        onChange={handleChange}
+        className={errors.password && styles.warning}
+        />
+        {errors.password ? (
+        <p style={{color:"red"}}>{errors.password}</p>
+        ) : null}
+        <br />
+        <button type="submit">Login</button>
+        <br />
+        <button onClick={handleLogOut}>LogOut</button>
+    </form>
+)};
